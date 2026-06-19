@@ -66,7 +66,7 @@ Website ini juga berfungsi sebagai **portofolio** yang menunjukkan kemampuan dal
 
 | Username | Password | Role |
 |----------|----------|------|
-| `valen` | `123` | Admin |
+| `eka88` | `1234567` | Admin |
 
 ---
 
@@ -88,34 +88,37 @@ Website ini juga berfungsi sebagai **portofolio** yang menunjukkan kemampuan dal
 ## 📁 Struktur Proyek
 uts_15676/
 ├── app/
-│ ├── Config/
-│ │ ├── Filters.php # Konfigurasi filter auth & admin
-│ │ └── Routes.php # Routing URL
-│ ├── Controllers/
-│ │ ├── AuthController.php # Login/logout
-│ │ ├── Home.php # Halaman home
-│ │ ├── MenuController.php # Halaman menu
-│ │ ├── AboutController.php # Halaman about
-│ │ └── AdminController.php # Dashboard admin & CRUD
-│ ├── Filters/
-│ │ ├── Auth.php # Filter cek login
-│ │ └── AdminFilter.php # Filter cek role admin
-│ ├── Models/
-│ │ ├── FoodModel.php # Model untuk tabel foods
-│ │ ├── DrinkModel.php # Model untuk tabel drinks
-│ │ └── UserModel.php # Model untuk tabel user
-│ ├── Views/
-│ │ ├── components_coffee/ # Header, footer template
-│ │ ├── layout_coffee.php # Layout utama
-│ │ └── v_*.php # File view
-│ └── Database/
-│ ├── Migrations/ # File migration tabel
-│ └── Seeds/ # File seeder data dummy
+│   ├── Config/
+│   │   ├── Filters.php
+│   │   └── Routes.php
+│   ├── Controllers/
+│   │   ├── AuthController.php
+│   │   ├── Home.php
+│   │   ├── MenuController.php
+│   │   ├── AboutController.php
+│   │   └── AdminController.php
+│   ├── Filters/
+│   │   ├── Auth.php
+│   │   └── AdminFilter.php
+│   ├── Models/
+│   │   ├── FoodModel.php
+│   │   ├── DrinkModel.php
+│   │   └── UserModel.php
+│   ├── Views/
+│   │   ├── components_coffee/
+│   │   │   ├── header.php
+│   │   │   └── footer.php
+│   │   ├── layout_coffee.php
+│   │   └── v_*.php
+│   └── Database/
+│       ├── Migrations/
+│       └── Seeds/
 ├── public/
-│ ├── coffee1-1.0.0/ # Template CSS/JS
-│ ├── img/ # Folder gambar menu
-│ └── Vermata/assets/ # Aset custom (favicon, dll)
-└── writable/ # Log & cache
+│   ├── coffee1-1.0.0/
+│   ├── img/
+│   └── Vermata/
+│       └── assets/
+└── writable/
 
 ---
 
