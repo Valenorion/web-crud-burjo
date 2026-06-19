@@ -125,7 +125,6 @@ uts_15676/
 │   └── Vermata/
 │       └── assets/
 └── writable/
-
 ---
 
 ## 📊 Database Structure
