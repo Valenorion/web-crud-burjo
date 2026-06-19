@@ -1,69 +1,233 @@
-# CodeIgniter 4 Application Starter
+# 🍚 Vermata Burjo - UTS Pemrograman Web Lanjut
 
-## What is CodeIgniter?
+![CodeIgniter](https://img.shields.io/badge/CodeIgniter-4.x-red?logo=codeigniter)
+![PHP](https://img.shields.io/badge/PHP-8.2+-blue?logo=php)
+![MySQL](https://img.shields.io/badge/MySQL-8.0+-orange?logo=mysql)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-4-purple?logo=bootstrap)
+![Status](https://img.shields.io/badge/Status-Selesai-green)
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+---
 
-This repository holds a composer-installable app starter.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+## 📋 Tentang Proyek
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+**Vermata Burjo** adalah website profil dan sistem manajemen menu untuk usaha **warung burjo** (warung makan sederhana) yang dibangun menggunakan **Framework CodeIgniter 4**. Website ini dikembangkan sebagai tugas **Ujian Tengah Semester (UTS)** mata kuliah **Pemrograman Web Lanjut** semester 4.
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+Proyek ini mengimplementasikan konsep **MVC (Model-View-Controller)** dan dilengkapi dengan fitur **autentikasi pengguna**, **manajemen menu** (CRUD), serta **dashboard admin** untuk mengelola data makanan dan minuman.
 
-## Installation & updates
+Website ini juga berfungsi sebagai **portofolio** yang menunjukkan kemampuan dalam pengembangan web modern dengan PHP framework.
 
-`composer create-project codeigniter4/appstarter` then `composer update` whenever
-there is a new release of the framework.
+---
 
-When updating, check the release notes to see if there are any changes you might need to apply
-to your `app` folder. The affected files can be copied or merged from
-`vendor/codeigniter4/framework/app`.
+## 🎯 Fitur Utama
 
-## Setup
+| Fitur | Deskripsi |
+|-------|-----------|
+| 🔐 **Authentication System** | Login dengan data statis, session management, logout |
+| 🛡️ **Filter Protection** | Auth filter untuk proteksi halaman, Admin filter untuk role |
+| 📄 **Multi Page** | Home, Menu, About, Admin Dashboard |
+| 👑 **Admin Dashboard** | Halaman khusus admin dengan statistik menu dan CRUD |
+| 🍽️ **Manajemen Menu** | CRUD (Create, Read, Update, Delete) untuk makanan & minuman |
+| 🔍 **Search & Filter** | Pencarian dan filter menu secara real-time |
+| 📞 **WhatsApp Integration** | Tombol pesan langsung ke WhatsApp pemilik burjo |
+| 🎨 **Responsive Design** | Tampilan modern dengan template coffee yang responsif |
 
-Copy `env` to `.env` and tailor for your app, specifically the baseURL
-and any database settings.
+---
 
-## Important Change with index.php
+## 🧠 Implementasi Konsep
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+| Konsep | Implementasi |
+|--------|--------------|
+| **Routes** | Definisi URL mapping ke controller di `app/Config/Routes.php` |
+| **Layout** | Template dengan `layout.php` dan `components/` (header, sidebar, footer) |
+| **Session** | Penyimpanan data login user |
+| **Filter** | `Auth.php` dan `AdminFilter.php` untuk proteksi akses |
+| **Migration** | Struktur database dengan version control |
+| **Seeding** | Data dummy untuk testing |
+| **CRUD** | Create, Read, Update, Delete untuk foods & drinks |
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+---
 
-**Please** read the user guide for a better explanation of how CI4 works!
+## 🚀 Halaman Website
 
-## Repository Management
+| Halaman | URL | Hak Akses |
+|---------|-----|-----------|
+| Home | `/` | ✅ Publik (tanpa login) |
+| Menu | `/menu` | ✅ Publik (tanpa login) |
+| About | `/about` | ✅ Publik (tanpa login) |
+| Login | `/login` | ✅ Publik (tanpa login) |
+| Logout | `/logout` | ✅ User login |
+| Admin Dashboard | `/admin/dashboard` | ❌ Hanya Admin |
+| Manajemen Makanan | `/admin/foods` | ❌ Hanya Admin |
+| Manajemen Minuman | `/admin/drinks` | ❌ Hanya Admin |
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+---
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+## 🔑 Demo Credential
 
-## Server Requirements
+| Username | Password | Role |
+|----------|----------|------|
+| `valen` | `123` | Admin |
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+---
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+## 🛠️ Teknologi yang Digunakan
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+| Teknologi | Keterangan |
+|-----------|------------|
+| **CodeIgniter 4** | PHP Framework (backend) |
+| **PHP 8.2+** | Bahasa pemrograman |
+| **MySQL** | Database management system |
+| **Bootstrap 4** | CSS Framework |
+| **Coffee Template** | Template frontend (Free Bootstrap 4 Template by Colorlib) |
+| **jQuery** | JavaScript library untuk interaktivitas |
+| **Chart.js** | Library untuk grafik statistik |
+| **Faker PHP** | Library untuk generate data dummy |
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+---
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+## 📁 Struktur Proyek
+uts_15676/
+├── app/
+│ ├── Config/
+│ │ ├── Filters.php # Konfigurasi filter auth & admin
+│ │ └── Routes.php # Routing URL
+│ ├── Controllers/
+│ │ ├── AuthController.php # Login/logout
+│ │ ├── Home.php # Halaman home
+│ │ ├── MenuController.php # Halaman menu
+│ │ ├── AboutController.php # Halaman about
+│ │ └── AdminController.php # Dashboard admin & CRUD
+│ ├── Filters/
+│ │ ├── Auth.php # Filter cek login
+│ │ └── AdminFilter.php # Filter cek role admin
+│ ├── Models/
+│ │ ├── FoodModel.php # Model untuk tabel foods
+│ │ ├── DrinkModel.php # Model untuk tabel drinks
+│ │ └── UserModel.php # Model untuk tabel user
+│ ├── Views/
+│ │ ├── components_coffee/ # Header, footer template
+│ │ ├── layout_coffee.php # Layout utama
+│ │ └── v_*.php # File view
+│ └── Database/
+│ ├── Migrations/ # File migration tabel
+│ └── Seeds/ # File seeder data dummy
+├── public/
+│ ├── coffee1-1.0.0/ # Template CSS/JS
+│ ├── img/ # Folder gambar menu
+│ └── Vermata/assets/ # Aset custom (favicon, dll)
+└── writable/ # Log & cache
+
+---
+
+## 📊 Database Structure
+
+### Tabel `foods`
+
+| Field | Type | Keterangan |
+|-------|------|------------|
+| `id` | INT(11) AUTO_INCREMENT | Primary Key |
+| `nama_makanan` | VARCHAR(255) | Nama makanan |
+| `harga` | DOUBLE | Harga makanan |
+| `deskripsi` | TEXT | Deskripsi makanan |
+| `kategori` | VARCHAR(100) | Kategori makanan (Nasi, Mie, dll) |
+| `foto` | VARCHAR(255) | Nama file foto |
+| `status` | ENUM('tersedia','habis') | Status ketersediaan |
+| `created_at` | DATETIME | Waktu dibuat |
+| `updated_at` | DATETIME | Waktu diupdate |
+
+### Tabel `drinks`
+
+| Field | Type | Keterangan |
+|-------|------|------------|
+| `id` | INT(11) AUTO_INCREMENT | Primary Key |
+| `nama_minuman` | VARCHAR(255) | Nama minuman |
+| `harga` | DOUBLE | Harga minuman |
+| `deskripsi` | TEXT | Deskripsi minuman |
+| `kategori` | VARCHAR(100) | Kategori minuman (Dingin/Panas) |
+| `ukuran` | ENUM('Small','Medium','Large') | Ukuran minuman |
+| `foto` | VARCHAR(255) | Nama file foto |
+| `status` | ENUM('tersedia','habis') | Status ketersediaan |
+| `created_at` | DATETIME | Waktu dibuat |
+| `updated_at` | DATETIME | Waktu diupdate |
+
+---
+
+## 💻 Instalasi & Setup
+
+### Prasyarat
+
+- PHP 8.2 atau lebih tinggi
+- Composer
+- Web Server (XAMPP / Laragon / Native)
+- MySQL
+
+### Langkah Instalasi
+
+# 1. Clone repository
+git clone https://github.com/username-anda/uts_15676.git
+cd uts_15676
+
+2. Install dependencies
+composer install
+
+# 3. Setup environment
+cp env .env
+# Edit .env sesuai kebutuhan (atur baseURL dan database)
+
+-- 4. Buat database di phpMyAdmin
+CREATE DATABASE db_ci4;
+
+# 5. Jalankan migration & seeder
+php spark migrate
+php spark db:seed DatabaseSeeder
+
+# 6. Jalankan server development
+php spark serve
+
+# 7. Akses website
+http://localhost:8080
+
+---
+
+🔐 Login ke Website
+Buka http://localhost:8080/login
+
+Masukkan credential demo:
+
+Username: eka88
+
+Password: 1234567
+
+Klik Login
+
+---
+
+📚 Yang Dipelajari dari Proyek Ini
+✅ Instalasi dan konfigurasi CodeIgniter 4
+
+✅ Konsep MVC (Model-View-Controller)
+
+✅ Routing dan URL management
+
+✅ Layout system dengan template & components
+
+✅ Session management untuk autentikasi
+
+✅ Filter untuk proteksi route (Auth & Admin)
+
+✅ Migration dan Seeding database
+
+✅ CRUD (Create, Read, Update, Delete)
+
+✅ Validasi form
+
+✅ Integrasi template frontend ke CI4
+
+✅ Upload foto
+
+✅ Pencarian dan filtering data
+
+---
+
+ Lisensi
+Proyek ini dibuat untuk tugas UTS Pemrograman Web Lanjut dan dapat digunakan sebagai referensi pembelajaran.
