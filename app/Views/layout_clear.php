@@ -30,357 +30,286 @@ if(uri_string()!=""){
     <link rel="stylesheet" href="<?= base_url('coffee1-1.0.0/css/icomoon.css') ?>">
     <link rel="stylesheet" href="<?= base_url('coffee1-1.0.0/css/style.css') ?>">
     
+    <!-- FontAwesome 6 (untuk ikon mangkok) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-        /* Coffee Theme Colors - No Purple */
         :root {
             --coffee-primary: #c49b6f;
-            --coffee-dark: #8b5e3c;
-            --coffee-light: #e8d5b5;
-            --coffee-cream: #fdf8f0;
-            --coffee-brown: #5c3a21;
-            --coffee-gold: #d4a853;
+            --coffee-dark:    #8b5e3c;
+            --coffee-gold:    #d4a853;
         }
-        
+
+        *, *::before, *::after { box-sizing: border-box; }
+
         body {
-            background-image: url('<?= base_url('coffee1-1.0.0/images/bg_1.jpg') ?>');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            position: relative;
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.55);
-            z-index: 0;
-        }
-        
-        /* Floating coffee beans animation */
-        .coffee-bean {
-            position: fixed;
-            opacity: 0.08;
-            pointer-events: none;
-            animation: floatBean 20s infinite linear;
-            z-index: 0;
-        }
-        
-        @keyframes floatBean {
-            0% {
-                transform: translateY(100vh) rotate(0deg);
-            }
-            100% {
-                transform: translateY(-100vh) rotate(360deg);
-            }
-        }
-        
-        .login-container {
-            position: relative;
-            z-index: 1;
+            margin: 0;
             min-height: 100vh;
+            font-family: 'Poppins', sans-serif;
+            background: #1a0e06;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-        }
-        
-        .login-card {
-            background: rgba(255, 255, 255, 0.97);
-            border-radius: 24px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(8px);
-            padding: 45px 35px;
-            width: 100%;
-            max-width: 460px;
-            margin: 20px;
-            animation: fadeInUp 0.7s ease-out;
-            border: 1px solid rgba(196, 155, 111, 0.2);
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .login-logo {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .brand-icon {
-            font-size: 65px;
-            color: var(--coffee-primary);
-            display: inline-block;
-            animation: steam 2s ease infinite;
-        }
-        
-        @keyframes steam {
-            0%, 100% {
-                transform: rotate(0deg) scale(1);
-            }
-            50% {
-                transform: rotate(3deg) scale(1.05);
-            }
-        }
-        
-        .login-logo h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 44px;
-            color: var(--coffee-primary);
-            margin-bottom: 5px;
-            letter-spacing: 1px;
-        }
-        
-        .login-logo p {
-            color: #888;
-            font-size: 14px;
-            margin-top: -5px;
-        }
-        
-        .login-title {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        
-        .login-title h4 {
-            font-size: 26px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
+            padding: 24px;
             position: relative;
-            display: inline-block;
-            padding-bottom: 12px;
+            overflow-x: hidden;
         }
-        
-        .login-title h4::after {
+
+        /* Ambient glow blobs */
+        body::before,
+        body::after {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 50px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--coffee-primary), var(--coffee-gold));
-            border-radius: 3px;
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
         }
-        
-        .login-title p {
-            color: #999;
-            font-size: 14px;
-            margin-top: 12px;
+        body::before {
+            width: 420px; height: 420px;
+            top: -100px; left: -80px;
+            background: radial-gradient(circle, rgba(196,155,111,0.18) 0%, transparent 70%);
         }
-        
-        .form-group {
-            margin-bottom: 22px;
+        body::after {
+            width: 360px; height: 360px;
+            bottom: -80px; right: -60px;
+            background: radial-gradient(circle, rgba(139,94,60,0.15) 0%, transparent 70%);
         }
-        
+
+        /* ── Card wrapper ── */
+        .login-wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        /* ── Brand header above card ── */
+        .login-brand {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .login-brand .brand-icon-box {
+            width: 64px; height: 64px;
+            background: linear-gradient(135deg, var(--coffee-primary), var(--coffee-dark));
+            border-radius: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 14px;
+            box-shadow: 0 8px 24px rgba(196,155,111,0.25);
+        }
+        .login-brand .brand-icon-box i {
+            font-size: 30px;
+            color: #fff;
+        }
+        .login-brand h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 42px;
+            color: #f5ece0;
+            margin: 0 0 4px;
+            line-height: 1;
+        }
+        .login-brand p {
+            font-size: 13px;
+            color: rgba(245,236,224,0.45);
+            margin: 0;
+        }
+
+        /* ── Glass card ── */
+        .login-card {
+            background: rgba(255,251,245,0.055);
+            border: 1px solid rgba(196,155,111,0.2);
+            border-radius: 20px;
+            padding: 36px 32px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            animation: fadeUp .6s ease-out both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .login-card h2 {
+            font-size: 20px;
+            font-weight: 600;
+            color: #f5ece0;
+            margin: 0 0 4px;
+        }
+        .login-card .login-sub {
+            font-size: 13px;
+            color: rgba(245,236,224,0.45);
+            margin: 0 0 28px;
+        }
+
+        /* ── Form elements ── */
+        .form-group { margin-bottom: 18px; }
+
         .form-group label {
-            font-weight: 500;
-            color: #555;
-            margin-bottom: 8px;
             display: block;
-            font-size: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(245,236,224,0.6);
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
         }
-        
+        .form-group label i {
+            margin-right: 5px;
+            color: var(--coffee-primary);
+            opacity: 0.8;
+        }
+
         .input-group-custom {
             position: relative;
             display: flex;
             align-items: center;
         }
-        
         .input-icon {
             position: absolute;
-            left: 15px;
-            color: var(--coffee-primary);
+            left: 14px;
+            color: rgba(196,155,111,0.65);
             font-size: 18px;
             z-index: 1;
+            pointer-events: none;
         }
-        
+
         .form-control-custom {
             width: 100%;
-            padding: 14px 15px 14px 48px;
-            border: 1.5px solid #e8e0d5;
+            padding: 13px 14px 13px 44px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(196,155,111,0.25);
             border-radius: 12px;
             font-size: 15px;
-            transition: all 0.3s ease;
-            background: #fff;
             font-family: 'Poppins', sans-serif;
-        }
-        
-        .form-control-custom:focus {
+            color: #f5ece0;
+            transition: border-color .25s, box-shadow .25s;
             outline: none;
-            border-color: var(--coffee-primary);
-            box-shadow: 0 0 0 4px rgba(196, 155, 111, 0.15);
         }
-        
-        .btn-login {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, var(--coffee-primary) 0%, var(--coffee-dark) 100%);
-            border: none;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 15px;
-            font-family: 'Poppins', sans-serif;
-            letter-spacing: 0.5px;
+        .form-control-custom::placeholder { color: rgba(245,236,224,0.3); }
+        .form-control-custom:focus {
+            border-color: rgba(196,155,111,0.75);
+            box-shadow: 0 0 0 3px rgba(196,155,111,0.12);
         }
-        
-        .btn-login:hover {
-            background: linear-gradient(135deg, var(--coffee-dark) 0%, #6b4423 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(139, 94, 60, 0.3);
-        }
-        
-        .btn-login:active {
-            transform: translateY(0);
-        }
-        
+
+        /* ── Alert error ── */
         .alert-custom {
-            background: #fee2e2;
-            border-left: 4px solid #dc2626;
-            border-radius: 12px;
-            padding: 14px 16px;
-            margin-bottom: 25px;
-            color: #991b1b;
-            font-size: 14px;
             display: flex;
             align-items: center;
             gap: 10px;
+            background: rgba(220,38,38,0.15);
+            border: 1px solid rgba(220,38,38,0.35);
+            border-radius: 12px;
+            padding: 13px 15px;
+            margin-bottom: 22px;
+            color: #fca5a5;
+            font-size: 14px;
         }
-        
-        .alert-custom i {
-            font-size: 18px;
-            color: #dc2626;
+        .alert-custom i { font-size: 18px; color: #f87171; }
+
+        /* ── Submit button ── */
+        .btn-login {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            background: linear-gradient(135deg, var(--coffee-primary) 0%, var(--coffee-dark) 100%);
+            border: none;
+            border-radius: 12px;
+            color: #fff;
+            font-weight: 600;
+            font-size: 15px;
+            font-family: 'Poppins', sans-serif;
+            letter-spacing: 0.4px;
+            cursor: pointer;
+            transition: opacity .2s, transform .15s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-        
+        .btn-login:hover  { opacity: .88; transform: translateY(-1px); }
+        .btn-login:active { transform: translateY(0); }
+
+        /* ── Demo credential hint ── */
+        .demo-cred {
+            margin-top: 22px;
+            padding: 12px 14px;
+            background: rgba(196,155,111,0.08);
+            border: 1px solid rgba(196,155,111,0.18);
+            border-radius: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: rgba(245,236,224,0.4);
+            line-height: 1.6;
+        }
+        .demo-cred span { color: var(--coffee-primary); font-weight: 600; }
+
+        /* ── Footer link ── */
         .footer-links {
             text-align: center;
-            margin-top: 30px;
+            margin-top: 24px;
             padding-top: 20px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid rgba(196,155,111,0.12);
         }
-        
         .footer-links a {
-            color: var(--coffee-primary);
+            color: rgba(196,155,111,0.7);
             text-decoration: none;
             font-size: 13px;
-            transition: all 0.3s ease;
+            transition: color .2s;
             display: inline-flex;
             align-items: center;
             gap: 5px;
         }
-        
-        .footer-links a:hover {
-            color: var(--coffee-dark);
-            transform: translateX(-3px);
-        }
-        
+        .footer-links a:hover { color: var(--coffee-primary); }
         .footer-links p {
-            color: #aaa;
-            font-size: 12px;
-            margin-top: 12px;
-            background: #f8f5f0;
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
+            color: rgba(245,236,224,0.2);
+            font-size: 11px;
+            margin-top: 10px;
         }
-        
-        /* Demo credentials highlight */
-        .demo-cred {
-            background: linear-gradient(135deg, #fdf8f0, #f5efe6);
-            border-radius: 10px;
-            padding: 10px;
-            margin-top: 20px;
+
+        /* ── Copyright ── */
+        .login-footer {
             text-align: center;
-            font-size: 12px;
-            color: #8b5e3c;
+            margin-top: 22px;
+            font-size: 11px;
+            color: rgba(245,236,224,0.18);
         }
-        
-        .demo-cred span {
-            font-weight: 600;
-            color: var(--coffee-dark);
-        }
-        
-        @media (max-width: 768px) {
-            .login-card {
-                padding: 35px 25px;
-                margin: 15px;
-            }
-            .login-logo h2 {
-                font-size: 36px;
-            }
-            .brand-icon {
-                font-size: 50px;
-            }
-            .login-title h4 {
-                font-size: 22px;
-            }
-            .btn-login {
-                padding: 12px;
-                font-size: 15px;
-            }
-            .form-control-custom {
-                padding: 12px 15px 12px 45px;
-            }
-        }
-        
-        /* Animation delay for coffee beans */
-        .bean-1 { top: 5%; left: 10%; font-size: 35px; animation-duration: 18s; animation-delay: 0s; }
-        .bean-2 { top: 15%; left: 85%; font-size: 28px; animation-duration: 22s; animation-delay: 2s; }
-        .bean-3 { top: 45%; left: 92%; font-size: 32px; animation-duration: 15s; animation-delay: 4s; }
-        .bean-4 { top: 70%; left: 5%; font-size: 40px; animation-duration: 25s; animation-delay: 1s; }
-        .bean-5 { top: 85%; left: 88%; font-size: 25px; animation-duration: 20s; animation-delay: 3s; }
-        .bean-6 { top: 25%; left: 3%; font-size: 30px; animation-duration: 28s; animation-delay: 5s; }
-        
-        @media (max-width: 768px) {
-            .coffee-bean { display: none; }
+
+        /* ── Responsive ── */
+        @media (max-width: 480px) {
+            .login-card { padding: 28px 22px; }
+            .login-brand h1 { font-size: 34px; }
+            .btn-login { font-size: 14px; padding: 12px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Floating coffee beans decoration -->
-<div class="coffee-bean bean-1">☕</div>
-<div class="coffee-bean bean-2">☕</div>
-<div class="coffee-bean bean-3">☕</div>
-<div class="coffee-bean bean-4">☕</div>
-<div class="coffee-bean bean-5">☕</div>
-<div class="coffee-bean bean-6">☕</div>
+<div class="login-wrapper">
 
-<div class="login-container">
+    <!-- Brand -->
+    <div class="login-brand">
+        <div class="brand-icon-box">
+            <!-- Ikon MANGKOK dari FontAwesome (GANTI dari ion-md-cafe) -->
+            <i class="fas fa-bowl-food"></i>
+        </div>
+        <h1>Vermata</h1>
+        <p>Welcome to Vermata Burjo Family</p>
+    </div>
+
+    <!-- Card -->
     <div class="login-card">
-        <div class="login-logo">
-            <span class="brand-icon">☕</span>
-            <h2>Vermata</h2>
-            <p>Welcome to Vermata Coffee Family</p>
-        </div>
-        
-        <div class="login-title">
-            <h4>Welcome Back!</h4>
-            <p>Please login to your account</p>
-        </div>
-        
+        <h2>Welcome back</h2>
+        <p class="login-sub">Sign in to your account to continue</p>
+
         <?= $this->renderSection('content') ?>
-        
+
         <div class="demo-cred">
-            💡 Demo: <span>valen</span> / <span>123</span>
+            💡 Demo: <span>eka88</span> / <span>1234567</span>
         </div>
     </div>
+
+    <p class="login-footer">© <?= date('Y') ?> Valentio Titan · All rights reserved</p>
 </div>
 
 <!-- Scripts -->
@@ -391,7 +320,6 @@ if(uri_string()!=""){
 
 <script>
     $(document).ready(function() {
-        // Add focus effect to form inputs
         $('.form-control-custom').on('focus', function() {
             $(this).parent('.input-group-custom').addClass('focused');
         }).on('blur', function() {

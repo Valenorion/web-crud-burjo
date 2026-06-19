@@ -4,14 +4,14 @@
 <!-- Hero Slider Section -->
 <section class="home-slider owl-carousel">
     <!-- Slider 1 -->
-    <div class="slider-item" style="background-image: url('<?= base_url() ?>coffee1-1.0.0/images/bg_1.jpg');">
+    <div class="slider-item" style="background-image: url('<?= base_url() ?>img/banner_2.png');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row slider-text justify-content-center align-items-center">
                 <div class="col-md-8 col-sm-12 text-center ftco-animate">
-                    <span class="subheading">Welcome to Vermata Coffee</span>
-                    <h1 class="mb-4">The Best Coffee Experience</h1>
-                    <p class="mb-4 mb-md-5">Nikmati secangkir kopi berkualitas dengan cita rasa terbaik.</p>
+                    <span class="subheading">Welcome to Vermata Burjo</span>
+                    <h1 class="mb-4">The Best Burjo In Town!</h1>
+                    <p class="mb-4 mb-md-5">Nikmati berbagai makanan dan minuman lezat dengan cita rasa terbaik.</p>
                     <p>
                         <a href="<?= base_url('/menu') ?>" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a>
                         <a href="<?= base_url('/menu') ?>" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a>
@@ -21,14 +21,14 @@
         </div>
     </div>
     <!-- Slider 2 -->
-    <div class="slider-item" style="background-image: url('<?= base_url() ?>coffee1-1.0.0/images/bg_2.jpg');">
+    <div class="slider-item" style="background-image: url('<?= base_url() ?>img/banner_3.png');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row slider-text justify-content-center align-items-center">
                 <div class="col-md-8 col-sm-12 text-center ftco-animate">
                     <span class="subheading">Premium Quality</span>
-                    <h1 class="mb-4">Fresh & Aromatic Coffee</h1>
-                    <p class="mb-4 mb-md-5">Biji kopi pilihan dari berbagai daerah terbaik di Indonesia.</p>
+                    <h1 class="mb-4">Fresh & Delicious Foods</h1>
+                    <p class="mb-4 mb-md-5">Bahan-bahan segar pilihan dari berbagai daerah terbaik di Indonesia.</p>
                     <p>
                         <a href="<?= base_url('/menu') ?>" class="btn btn-primary p-3 px-xl-4 py-xl-3">Order Now</a>
                         <a href="<?= base_url('/menu') ?>" class="btn btn-white btn-outline-white p-3 px-xl-4 py-xl-3">View Menu</a>
@@ -38,7 +38,7 @@
         </div>
     </div>
     <!-- Slider 3 -->
-    <div class="slider-item" style="background-image: url('<?= base_url() ?>coffee1-1.0.0/images/bg_3.jpg');">
+    <div class="slider-item" style="background-image: url('<?= base_url() ?>img/banner_2.png');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row slider-text justify-content-center align-items-center">
@@ -65,15 +65,15 @@
                     <div class="col-md-4 d-flex ftco-animate">
                         <div class="icon"><span class="icon-phone"></span></div>
                         <div class="text">
-                            <h3>+62 812-3456-7890</h3>
+                            <h3>+62 858-6981-8403</h3>
                             <p>Hubungi kami untuk pemesanan atau reservasi.</p>
                         </div>
                     </div>
                     <div class="col-md-4 d-flex ftco-animate">
                         <div class="icon"><span class="icon-my_location"></span></div>
                         <div class="text">
-                            <h3>Jakarta Selatan</h3>
-                            <p>Jl. Coffee Indah No. 123, Jakarta Selatan</p>
+                            <h3>Earth Planet</h3>
+                            <p>Jl. Indonesia, Bumi, Milkyway</p>
                         </div>
                     </div>
                     <div class="col-md-4 d-flex ftco-animate">
@@ -129,7 +129,7 @@
 
 <!-- About Section -->
 <section class="ftco-about d-md-flex">
-    <div class="one-half img" style="background-image: url('<?= base_url() ?>coffee1-1.0.0/images/about.jpg');"></div>
+    <div class="one-half img" style="background-image: url('<?= base_url() ?>img/burjo_1.png');"></div>
     <div class="one-half ftco-animate">
         <div class="overlap">
             <div class="heading-section ftco-animate">
@@ -137,8 +137,8 @@
                 <h2 class="mb-4">Our Story</h2>
             </div>
             <div>
-                <p>Vermata Coffee Shop berdiri sejak tahun 2020 dengan misi menyajikan kopi berkualitas terbaik untuk masyarakat Indonesia. Kami menggunakan biji kopi pilihan dari berbagai daerah seperti Gayo, Toraja, dan Kintamani.</p>
-                <p>Dengan barista berpengalaman dan suasana yang nyaman, Vermata Coffee Shop menjadi tempat favorit untuk menikmati kopi, bekerja, atau bersantai bersama teman dan keluarga.</p>
+                <p>Vermata Burjo berdiri sejak tahun 2020 dengan misi menyajikan makanan dan minuman berkualitas terbaik untuk masyarakat Indonesia. Kami menggunakan bahan-bahan pilihan dari berbagai daerah di Indonesia.</p>
+                <p>Dengan chef berpengalaman dan suasana yang nyaman, Vermata Burjo menjadi tempat favorit untuk menikmati hidangan, nongkrong, atau bersantai bersama teman dan keluarga.</p>
             </div>
         </div>
     </div>
@@ -155,7 +155,7 @@
                     </div>
                     <div class="media-body">
                         <h3 class="heading">Easy to Order</h3>
-                        <p>Pemesanan mudah melalui website atau datang langsung ke kafe kami.</p>
+                        <p>Pemesanan mudah melalui website atau datang langsung ke tempat kami.</p>
                     </div>
                 </div>
             </div>
@@ -176,8 +176,8 @@
                         <span class="flaticon-coffee-bean"></span>
                     </div>
                     <div class="media-body">
-                        <h3 class="heading">Quality Coffee</h3>
-                        <p>100% biji kopi pilihan yang di-roasting dengan standar terbaik.</p>
+                        <h3 class="heading">Quality Food</h3>
+                        <p>100% bahan pilihan yang diolah dengan standar terbaik.</p>
                     </div>
                 </div>
             </div>
@@ -197,7 +197,7 @@
                             <div class="text">
                                 <div class="icon"><span class="flaticon-coffee-cup"></span></div>
                                 <strong class="number" data-number="3">0</strong>
-                                <span>Coffee Branches</span>
+                                <span>Burjo Branches</span>
                             </div>
                         </div>
                     </div>
@@ -206,7 +206,7 @@
                             <div class="text">
                                 <div class="icon"><span class="flaticon-coffee-cup"></span></div>
                                 <strong class="number" data-number="10">0</strong>
-                                <span>Barista Experts</span>
+                                <span>Chef Experts</span>
                             </div>
                         </div>
                     </div>
@@ -240,8 +240,8 @@
         <div class="row justify-content-center mb-5 pb-3">
             <div class="col-md-7 heading-section ftco-animate text-center">
                 <span class="subheading">Discover</span>
-                <h2 class="mb-4">Best Seller Coffee</h2>
-                <p>Menu kopi terlaris yang paling banyak diminati oleh pelanggan kami.</p>
+                <h2 class="mb-4">Best Seller Menu</h2>
+                <p>Menu terlaris yang paling banyak diminati oleh pelanggan kami.</p>
             </div>
         </div>
         <div class="row">
@@ -249,9 +249,9 @@
                 <div class="menu-entry">
                     <a href="#" class="img" style="background-image: url('<?= base_url() ?>coffee1-1.0.0/images/menu-1.jpg');"></a>
                     <div class="text text-center pt-4">
-                        <h3><a href="#">Cappuccino</a></h3>
-                        <p>Espresso dengan busa susu yang lembut dan taburan bubuk kayu manis.</p>
-                        <p class="price"><span>Rp 28.000</span></p>
+                        <h3><a href="#">Nasi Goreng Special</a></h3>
+                        <p>Nasi goreng dengan telur, ayam suwir, dan sayuran segar.</p>
+                        <p class="price"><span>Rp 25.000</span></p>
                         <p><a href="<?= base_url('/menu') ?>" class="btn btn-primary btn-outline-primary">Order Now</a></p>
                     </div>
                 </div>
@@ -260,9 +260,9 @@
                 <div class="menu-entry">
                     <a href="#" class="img" style="background-image: url('<?= base_url() ?>coffee1-1.0.0/images/menu-2.jpg');"></a>
                     <div class="text text-center pt-4">
-                        <h3><a href="#">Latte</a></h3>
-                        <p>Kombinasi sempurna antara espresso dan susu steamed.</p>
-                        <p class="price"><span>Rp 30.000</span></p>
+                        <h3><a href="#">Mie Goreng</a></h3>
+                        <p>Mie goreng dengan sayuran, telur, dan bumbu spesial.</p>
+                        <p class="price"><span>Rp 18.000</span></p>
                         <p><a href="<?= base_url('/menu') ?>" class="btn btn-primary btn-outline-primary">Order Now</a></p>
                     </div>
                 </div>
@@ -271,9 +271,9 @@
                 <div class="menu-entry">
                     <a href="#" class="img" style="background-image: url('<?= base_url() ?>coffee1-1.0.0/images/menu-3.jpg');"></a>
                     <div class="text text-center pt-4">
-                        <h3><a href="#">Espresso</a></h3>
-                        <p>Kopi murni dengan rasa kuat dan aroma yang khas.</p>
-                        <p class="price"><span>Rp 22.000</span></p>
+                        <h3><a href="#">Ayam Geprek</a></h3>
+                        <p>Ayam goreng tepung crispy dengan sambal bawang pedas.</p>
+                        <p class="price"><span>Rp 28.000</span></p>
                         <p><a href="<?= base_url('/menu') ?>" class="btn btn-primary btn-outline-primary">Order Now</a></p>
                     </div>
                 </div>
@@ -282,9 +282,9 @@
                 <div class="menu-entry">
                     <a href="#" class="img" style="background-image: url('<?= base_url() ?>coffee1-1.0.0/images/menu-4.jpg');"></a>
                     <div class="text text-center pt-4">
-                        <h3><a href="#">Mocha</a></h3>
-                        <p>Perpaduan espresso, coklat, dan susu steamed.</p>
-                        <p class="price"><span>Rp 32.000</span></p>
+                        <h3><a href="#">Indomie + Telur</a></h3>
+                        <p>Indomie goreng dengan telur mata sapi dan sayuran.</p>
+                        <p class="price"><span>Rp 15.000</span></p>
                         <p><a href="<?= base_url('/menu') ?>" class="btn btn-primary btn-outline-primary">Order Now</a></p>
                     </div>
                 </div>
@@ -301,7 +301,7 @@
             <div class="col-md-7 heading-section text-center ftco-animate">
                 <span class="subheading">Testimony</span>
                 <h2 class="mb-4">Customers Says</h2>
-                <p>Apa kata pelanggan kami tentang pengalaman menikmati kopi di Vermata Coffee Shop.</p>
+                <p>Apa kata pelanggan kami tentang pengalaman menikmati makanan di Vermata Burjo.</p>
             </div>
         </div>
     </div>
@@ -310,20 +310,20 @@
             <div class="col-lg align-self-sm-end ftco-animate">
                 <div class="testimony">
                     <blockquote>
-                        <p>&ldquo;Kopinya enak, tempatnya nyaman, pelayanannya ramah. Wajib coba Cappuccino-nya!&rdquo;</p>
+                        <p>&ldquo;Makanannya enak, tempatnya nyaman, pelayanannya ramah. Wajib coba Nasi Goreng-nya!&rdquo;</p>
                     </blockquote>
                     <div class="author d-flex mt-4">
                         <div class="image mr-3 align-self-center">
                             <img src="<?= base_url() ?>coffee1-1.0.0/images/person_1.jpg" alt="">
                         </div>
-                        <div class="name align-self-center">Budi Santoso <span class="position">Coffee Lover</span></div>
+                        <div class="name align-self-center">Budi Santoso <span class="position">Food Lover</span></div>
                     </div>
                 </div>
             </div>
             <div class="col-lg align-self-sm-end">
                 <div class="testimony overlay">
                     <blockquote>
-                        <p>&ldquo;Tempat favorit untuk working from cafe. Wi-Fi cepat, banyak colokan, dan kopinya enak!&rdquo;</p>
+                        <p>&ldquo;Tempat favorit untuk nongkrong sama teman. Wi-Fi cepat, banyak colokan, dan makanannya enak!&rdquo;</p>
                     </blockquote>
                     <div class="author d-flex mt-4">
                         <div class="image mr-3 align-self-center">
@@ -336,13 +336,13 @@
             <div class="col-lg align-self-sm-end ftco-animate">
                 <div class="testimony">
                     <blockquote>
-                        <p>&ldquo;Baristanya profesional dan ramah menjelaskan berbagai varian kopi. Recommended!&rdquo;</p>
+                        <p>&ldquo;Chef-nya profesional dan ramah menjelaskan berbagai varian menu. Recommended!&rdquo;</p>
                     </blockquote>
                     <div class="author d-flex mt-4">
                         <div class="image mr-3 align-self-center">
                             <img src="<?= base_url() ?>coffee1-1.0.0/images/person_3.jpg" alt="">
                         </div>
-                        <div class="name align-self-center">Citra Dewi <span class="position">Coffee Enthusiast</span></div>
+                        <div class="name align-self-center">Citra Dewi <span class="position">Food Enthusiast</span></div>
                     </div>
                 </div>
             </div>

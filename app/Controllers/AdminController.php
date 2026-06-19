@@ -2,57 +2,286 @@
 
 namespace App\Controllers;
 
+use App\Models\FoodModel;
+use App\Models\DrinkModel;
+
 class AdminController extends BaseController
 {
+    protected $foodModel;
+    protected $drinkModel;
+
+    public function __construct()
+    {
+        helper('form');
+        $this->foodModel = new FoodModel();
+        $this->drinkModel = new DrinkModel();
+    }
+
+    // ==========================================
+    // DASHBOARD
+    // ==========================================
     public function dashboard()
     {
-        // Data statis untuk dashboard admin
-        $data = [
-            'title' => 'Admin Dashboard',
-            'total_visitors' => 1247,
-            'total_transactions' => 156,
-            'total_products' => 24,
-            'total_users' => 89,
-            'today_visitors' => 42,
-            'today_transactions' => 8,
-            'recent_activities' => [
-                ['time' => '10:30 AM', 'activity' => 'Admin valen menambahkan menu baru', 'icon' => 'plus'],
-                ['time' => '09:15 AM', 'activity' => 'User budi melakukan login', 'icon' => 'login'],
-                ['time' => '08:45 AM', 'activity' => 'Transaksi baru #INV-001', 'icon' => 'cart'],
-                ['time' => 'Yesterday', 'activity' => 'Menu "Cappuccino" diupdate harganya', 'icon' => 'edit'],
-                ['time' => 'Yesterday', 'activity' => '5 pengunjung baru hari ini', 'icon' => 'user'],
-            ],
-            'top_products' => [
-                ['name' => 'Cappuccino', 'sales' => 45, 'revenue' => 'Rp 1.350.000'],
-                ['name' => 'Latte', 'sales' => 38, 'revenue' => 'Rp 1.140.000'],
-                ['name' => 'Espresso', 'sales' => 32, 'revenue' => 'Rp 640.000'],
-                ['name' => 'Mocha', 'sales' => 28, 'revenue' => 'Rp 840.000'],
-                ['name' => 'Americano', 'sales' => 25, 'revenue' => 'Rp 625.000'],
-            ],
-            'monthly_stats' => [
-                'Jan' => 120, 'Feb' => 150, 'Mar' => 180, 'Apr' => 200, 
-                'May' => 220, 'Jun' => 250, 'Jul' => 280, 'Aug' => 300,
-                'Sep' => 310, 'Oct' => 340, 'Nov' => 360, 'Dec' => 400
-            ]
-        ];
+        $foods = $this->foodModel->findAll();
+        $drinks = $this->drinkModel->findAll();
         
-        return view('v_admin_dashboard', $data);
+        $data = [
+            'foods' => $foods,
+            'drinks' => $drinks,
+            'total_foods' => count($foods),
+            'total_drinks' => count($drinks),
+            'foods_available' => $this->foodModel->where('status', 'tersedia')->countAllResults(),
+            'drinks_available' => $this->drinkModel->where('status', 'tersedia')->countAllResults(),
+            'recent_activities' => [],
+            'today_visitors' => 0,
+            'today_transactions' => 0,
+        ];
+
+        
+        return view('dashboard/index', $data);
     }
-    
-    // Method tambahan untuk manajemen menu (opsional)
-    public function menuManagement()
+
+    // ==========================================
+    // CRUD FOODS
+    // ==========================================
+    public function foods()
     {
         $data = [
-            'title' => 'Manajemen Menu',
-            'menus' => [
-                ['id' => 1, 'name' => 'Cappuccino', 'price' => 30000, 'category' => 'Coffee'],
-                ['id' => 2, 'name' => 'Latte', 'price' => 30000, 'category' => 'Coffee'],
-                ['id' => 3, 'name' => 'Espresso', 'price' => 20000, 'category' => 'Coffee'],
-                ['id' => 4, 'name' => 'Mocha', 'price' => 30000, 'category' => 'Coffee'],
-                ['id' => 5, 'name' => 'Americano', 'price' => 25000, 'category' => 'Coffee'],
-            ]
+            'foods' => $this->foodModel->findAll(),
         ];
+        return view('admin/foods/index', $data);
+    }
+
+    public function createFood()
+    {
+        $rules = [
+            'nama' => 'required|min_length[3]|max_length[100]',
+            'kategori' => 'required',
+            'harga' => 'required|numeric|greater_than[0]',
+            'status' => 'permit_empty|in_list[tersedia,habis]',
+            'foto' => 'uploaded[foto]|max_size[foto,2048]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png,image/gif]',
+        ];
+
+        if (!$this->validate($rules)) {
+            $errors = implode(', ', $this->validator->getErrors());
+            session()->setFlashdata('failed', 'Gagal menambahkan makanan: ' . $errors);
+            return redirect()->back()->withInput();
+        }
+
+        $foto = $this->request->getFile('foto');
+        $fotoName = '';
         
-        return view('v_admin_menu', $data);
+        if ($foto && $foto->isValid() && !$foto->hasMoved()) {
+            $fotoName = $foto->getRandomName();
+            $foto->move('img/', $fotoName);
+        }
+
+        $data = [
+            'nama_makanan' => $this->request->getPost('nama'),
+            'kategori' => $this->request->getPost('kategori'),
+            'harga' => $this->request->getPost('harga'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
+            'status' => $this->request->getPost('status') ?? 'tersedia',
+            'foto' => $fotoName,
+        ];
+
+        $this->foodModel->insert($data);
+        session()->setFlashdata('success', 'Makanan berhasil ditambahkan!');
+        return redirect()->to('admin/dashboard');
+    }
+
+    public function editFood($id)
+    {
+        $rules = [
+            'nama' => 'required|min_length[3]|max_length[100]',
+            'kategori' => 'required',
+            'harga' => 'required|numeric|greater_than[0]',
+            'status' => 'permit_empty|in_list[tersedia,habis]',
+            'foto' => 'permit_empty|max_size[foto,2048]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png,image/gif]',
+        ];
+
+        if (!$this->validate($rules)) {
+            $errors = implode(', ', $this->validator->getErrors());
+            session()->setFlashdata('failed', 'Gagal mengupdate makanan: ' . $errors);
+            return redirect()->back()->withInput();
+        }
+
+        $oldData = $this->foodModel->find($id);
+        if (!$oldData) {
+            session()->setFlashdata('failed', 'Data makanan tidak ditemukan!');
+            return redirect()->to('admin/dashboard');
+        }
+
+        $foto = $this->request->getFile('foto');
+        $fotoName = $oldData['foto'] ?? '';
+        
+        if ($foto && $foto->isValid() && !$foto->hasMoved()) {
+            if (!empty($oldData['foto']) && file_exists('img/' . $oldData['foto'])) {
+                unlink('img/' . $oldData['foto']);
+            }
+            $fotoName = $foto->getRandomName();
+            $foto->move('img/', $fotoName);
+        }
+
+        $data = [
+            'nama_makanan' => $this->request->getPost('nama'),
+            'kategori' => $this->request->getPost('kategori'),
+            'harga' => $this->request->getPost('harga'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
+            'status' => $this->request->getPost('status') ?? 'tersedia',
+            'foto' => $fotoName,
+        ];
+
+        $this->foodModel->update($id, $data);
+        session()->setFlashdata('success', 'Makanan berhasil diupdate!');
+        return redirect()->to('admin/dashboard');
+    }
+
+    public function deleteFood($id)
+    {
+        $data = $this->foodModel->find($id);
+        if (!$data) {
+            session()->setFlashdata('failed', 'Data makanan tidak ditemukan!');
+            return redirect()->to('admin/dashboard');
+        }
+
+        if (!empty($data['foto']) && file_exists('img/' . $data['foto'])) {
+            unlink('img/' . $data['foto']);
+        }
+
+        $this->foodModel->delete($id);
+        session()->setFlashdata('success', 'Makanan berhasil dihapus!');
+        return redirect()->to('admin/dashboard');
+    }
+
+    // ==========================================
+    // CRUD DRINKS
+    // ==========================================
+    public function drinks()
+    {
+        $data = [
+            'drinks' => $this->drinkModel->findAll(),
+        ];
+        return view('admin/drinks/index', $data);
+    }
+
+    public function createDrink()
+    {
+        $rules = [
+            'nama' => 'required|min_length[3]|max_length[100]',
+            'kategori' => 'required',
+            'harga' => 'required|numeric|greater_than[0]',
+            'status' => 'permit_empty|in_list[tersedia,habis]',
+            'foto' => 'uploaded[foto]|max_size[foto,2048]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png,image/gif]',
+            'ukuran' => 'permit_empty|max_length[50]',
+        ];
+
+        if (!$this->validate($rules)) {
+            $errors = implode(', ', $this->validator->getErrors());
+            session()->setFlashdata('failed', 'Gagal menambahkan minuman: ' . $errors);
+            return redirect()->back()->withInput();
+        }
+
+        $foto = $this->request->getFile('foto');
+        $fotoName = '';
+        
+        if ($foto && $foto->isValid() && !$foto->hasMoved()) {
+            $fotoName = $foto->getRandomName();
+            $foto->move('img/', $fotoName);
+        }
+
+        $data = [
+            'nama_minuman' => $this->request->getPost('nama'),
+            'kategori' => $this->request->getPost('kategori'),
+            'harga' => $this->request->getPost('harga'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
+            'status' => $this->request->getPost('status') ?? 'tersedia',
+            'foto' => $fotoName,
+            'ukuran' => $this->request->getPost('ukuran'),
+        ];
+
+        $this->drinkModel->insert($data);
+        session()->setFlashdata('success', 'Minuman berhasil ditambahkan!');
+        return redirect()->to('admin/dashboard');
+    }
+
+    public function editDrink($id)
+    {
+        $rules = [
+            'nama' => 'required|min_length[3]|max_length[100]',
+            'kategori' => 'required',
+            'harga' => 'required|numeric|greater_than[0]',
+            'status' => 'permit_empty|in_list[tersedia,habis]',
+            'foto' => 'permit_empty|max_size[foto,2048]|is_image[foto]|mime_in[foto,image/jpg,image/jpeg,image/png,image/gif]',
+            'ukuran' => 'permit_empty|max_length[50]',
+        ];
+
+        if (!$this->validate($rules)) {
+            $errors = implode(', ', $this->validator->getErrors());
+            session()->setFlashdata('failed', 'Gagal mengupdate minuman: ' . $errors);
+            return redirect()->back()->withInput();
+        }
+
+        $oldData = $this->drinkModel->find($id);
+        if (!$oldData) {
+            session()->setFlashdata('failed', 'Data minuman tidak ditemukan!');
+            return redirect()->to('admin/dashboard');
+        }
+
+        $foto = $this->request->getFile('foto');
+        $fotoName = $oldData['foto'] ?? '';
+        
+        if ($foto && $foto->isValid() && !$foto->hasMoved()) {
+            if (!empty($oldData['foto']) && file_exists('img/' . $oldData['foto'])) {
+                unlink('img/' . $oldData['foto']);
+            }
+            $fotoName = $foto->getRandomName();
+            $foto->move('img/', $fotoName);
+        }
+
+        $data = [
+            'nama_minuman' => $this->request->getPost('nama'),
+            'kategori' => $this->request->getPost('kategori'),
+            'harga' => $this->request->getPost('harga'),
+            'deskripsi' => $this->request->getPost('deskripsi'),
+            'status' => $this->request->getPost('status') ?? 'tersedia',
+            'foto' => $fotoName,
+            'ukuran' => $this->request->getPost('ukuran'),
+        ];
+
+        $this->drinkModel->update($id, $data);
+        session()->setFlashdata('success', 'Minuman berhasil diupdate!');
+        return redirect()->to('admin/dashboard');
+    }
+
+    public function deleteDrink($id)
+    {
+        $data = $this->drinkModel->find($id);
+        if (!$data) {
+            session()->setFlashdata('failed', 'Data minuman tidak ditemukan!');
+            return redirect()->to('admin/dashboard');
+        }
+
+        if (!empty($data['foto']) && file_exists('img/' . $data['foto'])) {
+            unlink('img/' . $data['foto']);
+        }
+
+        $this->drinkModel->delete($id);
+        session()->setFlashdata('success', 'Minuman berhasil dihapus!');
+        return redirect()->to('admin/dashboard');
+    }
+
+    // ==========================================
+    // STORE MENU (SATU MODAL UNTUK FOOD & DRINK)
+    // ==========================================
+    public function storeMenu()
+    {
+        $jenis = $this->request->getPost('jenis');
+        
+        if ($jenis == 'makanan') {
+            return $this->createFood();
+        } else {
+            return $this->createDrink();
+        }
     }
 }
