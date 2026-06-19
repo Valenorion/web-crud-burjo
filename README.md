@@ -22,7 +22,7 @@ Website ini juga berfungsi sebagai **portofolio** yang menunjukkan kemampuan dal
 
 | Fitur | Deskripsi |
 |-------|-----------|
-| 🔐 **Authentication System** | Login dengan data statis, session management, logout |
+| 🔐 **Authentication System** | Login dengan data dinamis, session management, logout |
 | 🛡️ **Filter Protection** | Auth filter untuk proteksi halaman, Admin filter untuk role |
 | 📄 **Multi Page** | Home, Menu, About, Admin Dashboard |
 | 👑 **Admin Dashboard** | Halaman khusus admin dengan statistik menu dan CRUD |
@@ -30,6 +30,8 @@ Website ini juga berfungsi sebagai **portofolio** yang menunjukkan kemampuan dal
 | 🔍 **Search & Filter** | Pencarian dan filter menu secara real-time |
 | 📞 **WhatsApp Integration** | Tombol pesan langsung ke WhatsApp pemilik burjo |
 | 🎨 **Responsive Design** | Tampilan modern dengan template coffee yang responsif |
+| 🖼️ **Upload Foto** | Upload dan preview foto untuk setiap menu |
+| 🍞 **Toast Notification** | Notifikasi modern untuk feedback pengguna |
 
 ---
 
@@ -38,12 +40,14 @@ Website ini juga berfungsi sebagai **portofolio** yang menunjukkan kemampuan dal
 | Konsep | Implementasi |
 |--------|--------------|
 | **Routes** | Definisi URL mapping ke controller di `app/Config/Routes.php` |
-| **Layout** | Template dengan `layout.php` dan `components/` (header, sidebar, footer) |
+| **Layout** | Template dengan `layout.php` dan `components/` (header, footer) |
 | **Session** | Penyimpanan data login user |
 | **Filter** | `Auth.php` dan `AdminFilter.php` untuk proteksi akses |
 | **Migration** | Struktur database dengan version control |
 | **Seeding** | Data dummy untuk testing |
 | **CRUD** | Create, Read, Update, Delete untuk foods & drinks |
+| **Modal Form** | Form tambah dan edit data dengan modal Bootstrap |
+| **Toast Notification** | Notifikasi sukses/gagal dengan animasi slide |
 
 ---
 
@@ -80,12 +84,14 @@ Website ini juga berfungsi sebagai **portofolio** yang menunjukkan kemampuan dal
 | **Bootstrap 4** | CSS Framework |
 | **Coffee Template** | Template frontend (Free Bootstrap 4 Template by Colorlib) |
 | **jQuery** | JavaScript library untuk interaktivitas |
-| **Chart.js** | Library untuk grafik statistik |
-| **Faker PHP** | Library untuk generate data dummy |
+| **Ionicons** | Icon library |
+| **Flaticon** | Icon library |
+| **Icomoon** | Icon library |
 
 ---
 
 ## 📁 Struktur Proyek
+
 uts_15676/
 ├── app/
 │   ├── Config/
